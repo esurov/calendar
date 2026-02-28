@@ -13,7 +13,9 @@ A minimal, single-page web application that displays all Austrian public holiday
 
 ## Requirements
 
-- PHP >= 8.2
+- PHP >= 8.2 with the following extensions:
+  - `ctype`, `filter`, `hash`, `mbstring`, `openssl`, `session`, `tokenizer` (required by Laravel)
+  - `intl`, `calendar` (required by spatie/holidays)
 - Composer
 - Node.js & npm
 
