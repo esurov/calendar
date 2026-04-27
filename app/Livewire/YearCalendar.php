@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use Carbon\Carbon;
+use Illuminate\Contracts\View\View;
 use Livewire\Component;
 use Spatie\Holidays\Holidays;
 
@@ -134,7 +135,7 @@ class YearCalendar extends Component
         }
     }
 
-    public function render(): \Illuminate\Contracts\View\View
+    public function render(): View
     {
         return view('livewire.year-calendar');
     }
