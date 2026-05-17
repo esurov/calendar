@@ -47,13 +47,13 @@ class YearCalendar extends Component
 
     private function loadHolidays(): void
     {
-        $holidays = Holidays::for(country: 'at', year: $this->year);
+        $holidays = Holidays::for(country: 'at', year: $this->year)->get();
 
-        foreach ($holidays->get() as $holiday) {
-            $date = Carbon::parse($holiday['date'])->format('Y-m-d');
+        foreach ($holidays as $holiday) {
+            $date = $holiday->date->format('Y-m-d');
             $this->holidayMap[$date] = [
-                'name' => $holiday['name'],
-                'description' => self::HOLIDAY_DESCRIPTIONS[$holiday['name']] ?? '',
+                'name' => $holiday->name,
+                'description' => self::HOLIDAY_DESCRIPTIONS[$holiday->name] ?? '',
             ];
         }
     }
@@ -84,10 +84,10 @@ class YearCalendar extends Component
 
         if (count($nextYearHolidays) > 0) {
             $first = $nextYearHolidays[0];
-            $carbonDate = Carbon::parse($first['date']);
+            $carbonDate = Carbon::parse($first->date);
 
             $this->nextHoliday = [
-                'name' => $first['name'],
+                'name' => $first->name,
                 'date' => $carbonDate->format('j M Y'),
                 'daysRemaining' => (int) $today->diffInDays($carbonDate),
             ];
